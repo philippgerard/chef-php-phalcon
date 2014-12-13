@@ -47,6 +47,14 @@ node['php-phalcon']['conf_cli_dirs'].each do |conf_cli_dirs|
     end
 end
 
+bash "enable_phalcon_php" do
+  user 'root'
+  cwd '/'
+  code <<-EOH
+    /usr/sbin/php5enmod phalcon
+  EOH
+end
+
 if node['php-phalcon']['devtools']
     bash "phalcon-devtools" do
         user "root"
